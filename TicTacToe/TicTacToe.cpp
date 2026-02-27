@@ -1,6 +1,8 @@
-#include <iostream>
+#include "TicTacToeBoard.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    TicTacToeBoard game;
+    game.run();
+    return 0;
 }
