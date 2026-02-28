@@ -1,6 +1,8 @@
 #ifndef TICTACTOEBOARD
 #define TICTACTOEBOARD
+
 #include <iostream>
+#include <cctype>
 
 class TicTacToeBoard {
 private:
@@ -9,6 +11,8 @@ private:
 		{'-', '-', '-'},
 		{'-', '-', '-'}
 	};
+	int playerChosenRow = 0;
+	int playerChosenColumn = 0;
 public:
 	void run();
 	void drawBoard();
