@@ -39,8 +39,14 @@ void TicTacToeBoard::run() {
 			std::cout << "Please enter only 'X' or 'O'.\n";
 		}
 	}
-
 	player1.setPlayerSymbol(chosenSymbol);
+	if (chosenSymbol == 'X') {
+		computer1.setComputerSymbol('O');
+	}
+	else {
+		computer1.setComputerSymbol('X');
+	}
+	
 
 	drawBoard();
 
@@ -67,10 +73,13 @@ void TicTacToeBoard::drawBoard() {
 			  << "\n   |   |   \n";
 }
 
+
+// getter method
 char TicTacToeBoard::getBoardChar(char board[3][3], int row, int column) {
 	return board[row][column];
 }
 
+// setter method
 void TicTacToeBoard::setBoardChar(char board[3][3], int row, int column, char newChar) {
 	board[row][column] = newChar;
 }
