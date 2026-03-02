@@ -87,16 +87,14 @@ void TicTacToeBoard::setBoardChar(char board[3][3], int row, int column, char ne
 bool TicTacToeBoard::checkForWin(char board[3][3], char symbol) {
 	// Horizontal Check
 	for (int row = 0; row < 3; row++) {
-		int column = 0;
-		if ((board[row][column] == symbol) && (board[row][column + 1] == symbol) && (board[row][column + 2] == symbol)) {
+		if ((board[row][0] == symbol) && (board[row][1] == symbol) && (board[row][2] == symbol)) {
 			return true;
 		}
 	}
 
 	// Vertical Check
 	for (int column = 0; column < 3; column++) {
-		int row = 0;
-		if ((board[row][column] == symbol) && (board[row + 1][column] == symbol) && (board[row + 2][column] == symbol)) {
+		if ((board[0][column] == symbol) && (board[1][column] == symbol) && (board[2][column] == symbol)) {
 			return true;
 		}
 	}

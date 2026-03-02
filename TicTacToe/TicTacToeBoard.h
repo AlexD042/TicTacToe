@@ -13,6 +13,8 @@ private:
 	};
 	int playerChosenRow = 0;
 	int playerChosenColumn = 0;
+	int computerChosenRow = 0;
+	int computerChosenColumn = 0;
 public:
 	void run();
 	void drawBoard();
