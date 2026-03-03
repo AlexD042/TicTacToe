@@ -1,7 +1,26 @@
 #include "Computer.h"
 
-void Computer::computerMove(int& row, int& column) {
+void Computer::computerMove(char board[3][3], int& bestRow, int& bestColumn, Player player) {
+    int bestScore = -10000;
+    bestRow = -1;
+    bestColumn = -1;
+    for (int row = 0; row < 3; row++) {
+        for (int column = 0; column < 3; column++) {
+            if (board[row][column] == '-') {
+                board[row][column] = getComputerSymbol();
 
+                int moveScore = minimax(board, 0, false, player);
+
+                board[row][column] = '-';
+
+                if (moveScore > bestScore) {
+                    bestRow = row;
+                    bestColumn = column;
+                    bestScore = moveScore;
+                }
+            }
+        }
+    }
 }
 
 int Computer::minimax(char board[3][3], int depth, bool isMaximizingPlayer, Player player) {
@@ -18,7 +37,39 @@ int Computer::minimax(char board[3][3], int depth, bool isMaximizingPlayer, Play
     }
 
     //
+    if (isMaximizingPlayer) {
+        int bestScore = -10000;
 
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
+                if (board[row][column] == '-') {
+                    board[row][column] = getComputerSymbol();
+                    bestScore = std::max(bestScore, minimax(board, depth + 1, !isMaximizingPlayer, player));
+
+                    board[row][column] = '-';
+                }
+            }
+        }
+
+        return bestScore;
+    }
+    // If its the minizmizing player
+    else {
+        int bestScore = 10000;
+
+        for (int row = 0; row < 3; row++) {
+            for (int column = 0; column < 3; column++) {
+                if (board[row][column] == '-') {
+                    board[row][column] = player.getPlayerSymbol();
+                    bestScore = std::min(bestScore, minimax(board, depth + 1, !isMaximizingPlayer, player));
+
+                    board[row][column] = '-';
+                }
+            }
+        }
+
+        return bestScore;
+    }
 }
 
 int Computer::evaluate(char board[3][3], Player player) {

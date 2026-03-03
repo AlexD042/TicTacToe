@@ -19,8 +19,9 @@ public:
 	void run();
 	void drawBoard();
 	bool checkForWin(char board[3][3], char symbol);
-	char getBoardChar(char board[3][3], int row, int column);
-	void setBoardChar(char board[3][3], int row, int column, char newChar);
+	
+	char getBoardChar(int row, int column);
+	void setBoardChar(int row, int column, char newChar);
 };
 
 #endif

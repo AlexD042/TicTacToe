@@ -30,7 +30,7 @@ void TicTacToeBoard::run() {
 		}
 
 		// check if user entered a correct character
-		std::toupper(chosenSymbol);
+		chosenSymbol = std::toupper(chosenSymbol);
 		if (chosenSymbol == 'X' || chosenSymbol == 'O') {
 			std::cout << "You chose: " << chosenSymbol << '\n';
 			break;
@@ -52,35 +52,34 @@ void TicTacToeBoard::run() {
 
 	while(isRunning) {
 		player1.playerMove(playerChosenRow, playerChosenColumn);
-		setBoardChar(board, playerChosenRow - 1, playerChosenColumn - 1, player1.getPlayerSymbol()); // -1 since the array is 0-indexed
+		setBoardChar(playerChosenRow - 1, playerChosenColumn - 1, player1.getPlayerSymbol()); // -1 since the array is 0-indexed
 		drawBoard();
-		if (checkForWin(board, player1.getPlayerSymbol())) {
-			std::cout << "you win";
-			isRunning = false;
-		}
+		computer1.computerMove(board, computerChosenRow, computerChosenColumn, player1);
+		setBoardChar(computerChosenRow, computerChosenColumn, computer1.getComputerSymbol()); // no need for -1 since its already 0-indexed
+		drawBoard();
 	}
 }
 
 void TicTacToeBoard::drawBoard() {
 	std::cout << "\n   |   |   \n"
-			  << " " << getBoardChar(board, 0, 0) << " | " << getBoardChar(board, 0, 1) << " | " << getBoardChar(board, 0, 2)
+			  << " " << getBoardChar(0, 0) << " | " << getBoardChar(0, 1) << " | " << getBoardChar(0, 2)
 			  << "\n___|___|___\n"
 			  << "   |   |   \n"
-			  << " " << getBoardChar(board, 1, 0) << " | " << getBoardChar(board, 1, 1) << " | " << getBoardChar(board, 1, 2)
+			  << " " << getBoardChar(1, 0) << " | " << getBoardChar(1, 1) << " | " << getBoardChar(1, 2)
 			  << "\n___|___|___\n"
 		      << "   |   |   \n"
-			  << " " << getBoardChar(board, 2, 0) << " | " << getBoardChar(board, 2, 1) << " | " << getBoardChar(board, 2, 2)
+			  << " " << getBoardChar(2, 0) << " | " << getBoardChar(2, 1) << " | " << getBoardChar(2, 2)
 			  << "\n   |   |   \n";
 }
 
 
 // getter method
-char TicTacToeBoard::getBoardChar(char board[3][3], int row, int column) {
+char TicTacToeBoard::getBoardChar(int row, int column) {
 	return board[row][column];
 }
 
 // setter method
-void TicTacToeBoard::setBoardChar(char board[3][3], int row, int column, char newChar) {
+void TicTacToeBoard::setBoardChar(int row, int column, char newChar) {
 	board[row][column] = newChar;
 }
 
