@@ -36,7 +36,7 @@ int Computer::minimax(char board[3][3], int depth, bool isMaximizingPlayer, Play
         return 0;
     }
 
-    //
+    // If its the maximizing player
     if (isMaximizingPlayer) {
         int bestScore = -10000;
 
@@ -53,7 +53,7 @@ int Computer::minimax(char board[3][3], int depth, bool isMaximizingPlayer, Play
 
         return bestScore;
     }
-    // If its the minizmizing player
+    // If its the minimizing player
     else {
         int bestScore = 10000;
 
