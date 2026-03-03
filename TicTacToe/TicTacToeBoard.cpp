@@ -51,12 +51,39 @@ void TicTacToeBoard::run() {
 	drawBoard();
 
 	while(isRunning) {
-		player1.playerMove(playerChosenRow, playerChosenColumn);
+		// Player Move
+		player1.playerMove(board, playerChosenRow, playerChosenColumn);
 		setBoardChar(playerChosenRow - 1, playerChosenColumn - 1, player1.getPlayerSymbol()); // -1 since the array is 0-indexed
 		drawBoard();
+		
+		// Check if Player Won
+		if (checkForWin(board, player1.getPlayerSymbol())) {
+			std::cout << "you win\n";
+			isRunning = false;
+			break;
+		}
+
+		system("cls");
+		
+		// Check if tie happened
+		if (isBoardFull(board)) {
+			drawBoard();
+			std::cout << "Tie\n";
+			isRunning = false;
+			break;
+		}
+
+		// Computer Move
 		computer1.computerMove(board, computerChosenRow, computerChosenColumn, player1);
 		setBoardChar(computerChosenRow, computerChosenColumn, computer1.getComputerSymbol()); // no need for -1 since its already 0-indexed
 		drawBoard();
+
+		// Check if the computer won
+		if (checkForWin(board, computer1.getComputerSymbol())) {
+			std::cout << "computer wins\n";
+			isRunning = false;
+			break;
+		}
 	}
 }
 
@@ -109,4 +136,15 @@ bool TicTacToeBoard::checkForWin(char board[3][3], char symbol) {
 	}
 
 	return false;
+}
+
+bool TicTacToeBoard::isBoardFull(char board[3][3]) {
+	for (int row = 0; row < 3; row++) {
+		for (int column = 0; column < 3; column++) {
+			if (board[row][column] == '-') {
+				return false; // board is not full
+			}
+		}
+	}
+	return true; //board is full
 }
