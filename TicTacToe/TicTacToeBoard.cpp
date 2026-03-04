@@ -88,15 +88,16 @@ void TicTacToeBoard::run() {
 }
 
 void TicTacToeBoard::drawBoard() {
-	std::cout << "\n   |   |   \n"
-			  << " " << getBoardChar(0, 0) << " | " << getBoardChar(0, 1) << " | " << getBoardChar(0, 2)
-			  << "\n___|___|___\n"
-			  << "   |   |   \n"
-			  << " " << getBoardChar(1, 0) << " | " << getBoardChar(1, 1) << " | " << getBoardChar(1, 2)
-			  << "\n___|___|___\n"
-		      << "   |   |   \n"
-			  << " " << getBoardChar(2, 0) << " | " << getBoardChar(2, 1) << " | " << getBoardChar(2, 2)
-			  << "\n   |   |   \n";
+	std::cout << "\n       |   |   \n"
+			  << "1    " << getBoardChar(0, 0) << " | " << getBoardChar(0, 1) << " | " << getBoardChar(0, 2)
+			  << "\n    ___|___|___\n"
+			  << "       |   |   \n"
+			  << "2    " << getBoardChar(1, 0) << " | " << getBoardChar(1, 1) << " | " << getBoardChar(1, 2)
+			  << "\n    ___|___|___\n"
+		      << "       |   |   \n"
+			  << "3    " << getBoardChar(2, 0) << " | " << getBoardChar(2, 1) << " | " << getBoardChar(2, 2)
+			  << "\n       |   |   \n"
+			  << "\n     1   2   3\n\n";
 }
 
 
