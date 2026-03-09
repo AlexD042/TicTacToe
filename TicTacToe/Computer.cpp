@@ -24,7 +24,8 @@ void Computer::computerMove(char board[3][3], int& bestRow, int& bestColumn, Pla
 }
 
 int Computer::minimax(char board[3][3], int depth, bool isMaximizingPlayer, Player player) {
-	int score = evaluate(board, player);
+	// Evaluate the board
+    int score = evaluate(board, player);
     
     // Maximizing or minimizing player won
     if (score == 10 || score == -10) {
